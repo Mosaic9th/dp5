@@ -1,0 +1,17 @@
+.mantine-mz51ii {
+
+    color: #ffffff;
+    padding: 0px 18px 18px 12px;
+}
+
+.mantine-mz51ii:hover {
+    background-color: transparent;
+}
+
+.btn-link {
+
+    --bs-btn-color: #FFFFFF;
+    --bs-btn-hover-color: #ffffff94;
+    --bs-btn-active-color: #ffffff;
+    margin-left: -10px;
+}

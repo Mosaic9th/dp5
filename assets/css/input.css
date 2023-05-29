@@ -1,0 +1,15 @@
+.form-control:disabled {
+    color: grey !important;
+}
+
+.form-control:disabled {
+    background-color: #d0d0d0 !important;
+} 
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+

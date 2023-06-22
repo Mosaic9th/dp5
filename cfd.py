@@ -357,7 +357,7 @@ def dividendos_cut(codigos_ativos, data_inicial, data_final):
         try:
         #if pd.read_csv('dados/dividends/'+ ativos_to_read +'.csv'):
 
-            hist_dividendos = pd.read_csv('dados/dividends/'+ ativos_to_read +'.csv')
+            hist_dividendos = pd.read_csv('assets/dados/dividends/'+ ativos_to_read +'.csv')
             hist_dividendos['Date'] = pd.to_datetime(hist_dividendos['Date'])
             hist_dividendos.set_index('Date', inplace=True)
             hist_dividendos = hist_dividendos.rename(columns={'Adj Dividends': ativos_to_read})
@@ -434,3 +434,54 @@ def envio_email(user_name, user_email, assunto, mensagem, tipo_contato, protocol
             pass
 
     return retorno_1, retorno_2
+
+
+
+#############################
+def banners():
+    list_banners = pd.read_csv('assets/banners/list_banners.csv', index_col=0)
+
+    list_banners = list_banners.sample(len(list_banners.columns))
+    print(list_banners)
+    #banner_01
+    banner_01_w_min = 250
+    banner_01_w_max = 300
+    banner_01_h_min = 250
+    banner_01_h_max = 300
+    banner_01_file = ""
+    banner_01_link = None
+    banner_01_space = False
+
+    n = 0
+    for index, row in list_banners.iterrows():
+
+        #binomo_01_0300x0250.png
+        w = int(row[0][-13:-9])
+        h = int(row[0][-8:-4])
+
+        print(list_banners)
+    
+        #banner_01    
+        if w >= banner_01_w_min and h >= banner_01_h_min and banner_01_space == False:# and w <= banner_01_w_max:# and h >= banner_01_h_min and h <= banner_01_h_max and banner_01_space == False:
+
+            banner_01_file = row[0]
+            
+            banner_01_link = row[1]
+
+            banner_01_space = True
+
+            print('n', n)
+            print('banner_01_file', banner_01_file)
+            print('banner_01_link', banner_01_link)
+            print('w',w)
+            print('h',h)
+        
+        else:
+            print('n', n)
+            print('banner_01_file', banner_01_file)
+            print('banner_01_link', banner_01_link)
+            print('w',w)
+            print('h',h)
+        n = n +1
+
+    return (banner_01_file, banner_01_link)

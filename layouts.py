@@ -51,10 +51,6 @@ pagina_documentacao = create_pagina_documentacao ()
 from paginas.pagina_404 import create_pagina_404
 pagina_404 = create_pagina_404 ()
 
-from paginas.pagina_relatorio import create_pagina_relatorio
-pagina_relatorio = create_pagina_relatorio ()
-
-
 
 #callbacks/layouts
 
@@ -65,12 +61,10 @@ layout_home = html.Div(
 
 [
     pagina_home
-]
+],  
+
 )
 
-layout_relatorio = html.Div([
-    pagina_relatorio
-])
 
 layout_login = html.Div([
     pagina_login

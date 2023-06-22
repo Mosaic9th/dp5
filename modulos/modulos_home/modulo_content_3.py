@@ -3,6 +3,7 @@ from dash import dcc, html
 
 #plotly
 import plotly.graph_objs as go
+from plotly.graph_objects import Layout
 
 #dash-bootstrap-components
 import dash_bootstrap_components as dbc
@@ -17,6 +18,11 @@ import dash_mantine_components as dmc
 #paginas
 
 #modulos
+from modulos.modulos_banner.banner_05 import banner_05
+from modulos.modulos_banner.banner_05_mob import banner_05_mob
+from modulos.modulos_banner.banner_06 import banner_06
+from modulos.modulos_banner.banner_07 import banner_07
+
 
 #callbacks / layouts
 
@@ -40,125 +46,214 @@ def create_modulo_content_3():
                 dbc.Col([
 
                     html.Div(
-                    dbc.Card([
-                                
-                        dbc.CardBody([
-                            
-                            html.Div([
-                               #html.H5("Percentual alocado por ativo:", className="card-title text-md-center"),
-                                dcc.Graph(
-                                    config = {'displaylogo': False,
-                                        'displayModeBar': False},
-                                    id='graph_acoes',
-                                    figure = go.Figure(data=[go.Pie(labels=None, values=None, hoverinfo="label+percent", hole=.3,)], layout_showlegend=True,)
+                    [
+                        dmc.Space(h=20),
+                        dbc.Card([           
+                            dbc.CardBody([  
+                                html.Div([
+                                    #html.H5("Percentual alocado por setor econômico:", className="card-title text-md-center"),
+                                    dcc.Graph(
+                                        config = {'displaylogo': False,
+                                            'displayModeBar': False},
+                                        id='graph_acoes',
+                                        #figure = go.Figure(data=[go.Pie(labels=None, values=None, hoverinfo="label+percent", hole=.3 )], layout_showlegend=True,)
+                                        figure = go.Figure(layout = Layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', xaxis= dict(visible=False), yaxis= dict(visible=False), font_color = 'rgba(0,0,0,0)', autosize=True, width=810, height=460, ), )#margin=dict(l=50, r=50, t=50, b=50))),
                                     ),
-                                      
-                            ],
-                            id = "div_graph3",
-                            #style={"display":"none"}
-                                          
-                            ),
-                            html.Div(
-                                dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_grafico3"),
-                                id ="div_spinner_grafico3", className= 'text-md-center',style = {"max-height": "500px", "padding-top": "175px"} 
-                            ),  
-                            
-                        ], 
+                                ],         
+                                ),   
+                            ], 
+                            ),                  
+                        ],id = 'card_div_graph3', color="dark",
                         ),
-                                
-                    ],color="dark", inverse=True, style = {"max-height": "600px","min-height": "500px"}, id = 'div_certa3',className="p-2 mb-2"
-                    ),#style = {"padding-bottom": "50px"}, #className="p-2 mb-2 "    
+                    ],id = "div_graph3", style={'display':'none'}
                     ),
 
-                    dmc.Space(h=30), 
-
                     html.Div(
-                            html.Img(src=r'assets/images/banner.png', width="300px", height="200px", 
-                                #className="p-3 mb-2",
-                                style={
-                                    'maxWidth': '100%',
-                                    'maxHeight': '100%',
-                                },
-                            ),style={'text-align':'center'}
-                        ),
+                    [
+                        dbc.Card([
+                                        
+                            dbc.CardBody([
 
-                    dmc.Space(h=30),
-
-                    html.Div(
-                    dbc.Card([
-                                
-                        dbc.CardBody([
-                            
-                            html.Div([
-                                #html.H5("Percentual alocado por setor econômico:", className="card-title text-md-center"),
-                                dcc.Graph(
-                                    config = {'displaylogo': False,
-                                        'displayModeBar': False},
-                                    id='graph_setor',
-                                    figure = go.Figure(data=[go.Pie(labels=None, values=None, hoverinfo="label+percent", hole=.3 )], layout_showlegend=True,)
-                                    ),
-                                
-                            ],
-                            id = "div_graph2",
-                            #style={"display":"none"}          
-                            ),
+                            dmc.Space(h=180),
+                                    
                             html.Div(
-                                dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_grafico2"),
-                                id ="div_spinner_grafico2", className= 'text-md-center',style = {"max-height": "500px", "padding-top": "175px"} 
-                            ),  
-                            
-                        ], 
+                                    dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_grafico2"),
+                                    #id ="div_spinner_grafico2", className= 'text-md-center',style = {"max-height": "500px", "padding-top": "175px"} 
+                                ),  
+                            dmc.Space(h=180),
+
+                            ],style = {"text-align": "center"},
+                            ),
+                        ],id = 'card_div_spinner_grafico3', color="dark", style = {"height": "500px"}, 
                         ),
-                                
-                    ],color="dark", inverse=True, style = {"max-height": "600px","min-height": "500px"}, id = 'div_certa2', className="p-2 mb-2"
-                    ),#style = {"padding-bottom": "50px"}, #className="p-2 mb-2 "
+
+                    ],id ="div_spinner_grafico3"
                     ),
 
-                ],md=8
+                    
+
+                  
+                    #banner_5
+                    html.Div(
+                    [  
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'30px',
+                        },
+                        id = 'banner_5_p', 
+                        ),
+                        html.Div(
+                            banner_05(),
+                        style={             
+                        'height':'250px',
+                        #'width': '728px',
+                        },       
+                        id = 'banner_5', 
+                        ),
+    
+                    ], id = 'div_content_banner_5', 
+                    ),
+                    
+                    #banner_5_mobile
+                    html.Div(
+                    [
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'30px',
+                                                },
+                        id = 'banner_5_p_mobile', 
+                        
+                        ),
+                        html.Div(
+                            banner_05_mob(),
+                        style={             
+                        
+                        'height':'300px',
+                        },       
+                        id = 'banner_5_mobile', 
+                        ),
+    
+                        #dmc.Space(h=20),
+
+                    ], id = 'div_content_banner_5_mobile', 
+                    style = {'display': 'none'}
+                    ),
+
+                    html.Div(
+                    [
+                        dmc.Space(h=50),
+                        dbc.Card([           
+                            dbc.CardBody([  
+                                html.Div([
+                                    #html.H5("Percentual alocado por setor econômico:", className="card-title text-md-center"),
+                                    dcc.Graph(
+                                        config = {'displaylogo': False,
+                                            'displayModeBar': False},
+                                        id='graph_setor',
+                                        #figure = go.Figure(data=[go.Pie(labels=None, values=None, hoverinfo="label+percent", hole=.3 )], layout_showlegend=True,)
+                                        figure = go.Figure(layout = Layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', xaxis= dict(visible=False), yaxis= dict(visible=False), font_color = 'rgba(0,0,0,0)', autosize=True, width=810, height=460, ), )#margin=dict(l=50, r=50, t=50, b=50))),
+                                    ),
+                                ],         
+                                ),   
+                            ], 
+                            ),                  
+                        ],id = 'card_div_graph2', color="dark", #style = {"min-width": "650px"},
+                        ),
+                    ],id = "div_graph2", style={'display':'none'}
+                    ),
+
+                    html.Div(
+                    [
+                        dmc.Space(h=50),
+                        dbc.Card([
+                                        
+                            dbc.CardBody([
+                            
+                            dmc.Space(h=180),
+                                    
+                            html.Div(
+                                    dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_grafico2"),
+                                    #id ="div_spinner_grafico2", className= 'text-md-center',style = {"max-height": "500px", "padding-top": "175px"} 
+                                ),  
+                            dmc.Space(h=180),  
+                            ],style = {"text-align": "center"},
+                            ),
+                        ],id = 'card_div_spinner_grafico2', color="dark", style = {"height": "500px"},
+                        ),
+
+                    ],id ="div_spinner_grafico2"
+                    ),
+                    
+
+                ],md=8, id = 'col_acoes_setor',
                 ),
 
                 dbc.Col([
+
+                #banner_6
+                html.Div(
+                [
+                    
                     html.Div(
-                        html.Img(src=r'assets/images/banner.png', width="425px", height="600px", 
-                        #className="p-3 mb-2",
-                        style={
-                            'maxWidth': '100%',
-                            'maxHeight': '100%',
-                            },
-                        ),style={'text-align':'center'}
-                        
-                    ),
-                    dmc.Space(h=30),
-
+                        dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                    style = {'height':'20px',
+                    #'margin-top':'30px',
+                    },
+                    id = 'banner_6_p', 
+                     ),
                     html.Div(
-                        html.Img(src=r'assets/images/banner.png', width="425px", height="600px", 
-                        #className="p-3 mb-2",
-                        style={
-                            'maxWidth': '100%',
-                            'maxHeight': '100%',
-                            },
-                        ),style={'text-align':'center'}
-                        
+                        banner_06(),
+                    style={             
+                    'text-align': 'center',
+                    'height':'711px',
+                    'width': '400px',
+                    },       
+                    id = 'banner_6', 
                     ),
+   
+                    
 
-                    dmc.Space(h=30),
+                ], id = 'div_content_banner_6'
+                ),
+                   
+           
 
-                    #html.Div(
-                            #html.Img(src=r'assets/images/banner.png', width="300px", height="300px", 
-                                #lassName="p-3 mb-2",
-                                #style={
-                                    #'maxWidth': '100%',
-                                    #'maxHeight': '100%',
-                                #},
-                            #),style={'text-align':'center'}
-                        #),
+                #banner_7
+                html.Div(
+                [
+                    
+                    html.Div(
+                        dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                    style = {'height':'20px',
+                    'margin-top':'30px',
+                    },
+                    id = 'banner_7_p', 
+                     ),
+                    html.Div(
+                        banner_07(),
+                    style={             
+                    'text-align': 'center',
+                    'height':'580px',
+                    'width': '400px',
+                    },       
+                    id = 'banner_7', 
+                    ),
+   
+                    
 
-                ],md=4
+                ], id = 'div_content_banner_7'
+                ),
+
+                    
+                ],md=4, id = 'col_banner'
                 ),
 
                 
             
-            ]),
+            ],className="gx-5",
+            ),
             dbc.Row(
             [
                 html.Div(
@@ -171,56 +266,6 @@ def create_modulo_content_3():
                         #children=[dmc.Text("This is a vertically centered modal.")],
                         id="modal"
                     ),
-                    #dbc.Button("Open modal", id="open", n_clicks=0),
-                    
-                    #login_modal
-                   
-                        #dbc.ModalHeader(dbc.ModalTitle("Faça o login para continuar...")),
-                        #dbc.ModalBody("Para realizar o backtest do seu portfólio crie uma conta gratuita agora.", className="p-2 mb-2"),
-                        #dbc.ModalBody("Caso já tenha uma conta, por favor, faça o login.", className="p-2 mb-2"),
-                        #dbc.ModalBody(
-                            #id = 'modal_body'),
-                        #dbc.ModalFooter(
-                            
-                            #dbc.Row(
-
-                            #[
-                                #dbc.Col (
-                                    #dbc.Button(
-                                        #"Ainda não tenho cadastro?", id="close", n_clicks=0, className="d-grid gap-2 col-10 mx-auto p-2 mb-2", href='/cadastro'), md = 6
-                                #),
-                                 #dbc.Col (
-                                    #dbc.Button(
-                                        #"Esqueci minha senha.", id="close", n_clicks=0, className="d-grid gap-2 col-10 mx-auto p-2 mb-2", href='/login'),  md = 6
-                                #)
-                            #], className="flex-grow-1" 
-                            #)
-                       #)
-                    #],
-                    #id="modal",
-                    #size="lg",
-                    #is_open=False,
-                    #),
-
-                    html.Div(
-                    [
-                        #dbc.Button("Open Offcanvas", id="open-offcanvas", n_clicks=0),
-                        dbc.Offcanvas(
-                            html.P(
-                                "This is the content of the Offcanvas. "
-                                "Close it by clicking on the close button, or "
-                                "the backdrop."
-                            ),
-                            id="offcanvas",
-                            title="Title",
-                            is_open=False,
-                            placement = "bottom"
-                        ),
-                    ]
-                    )
-
-
-                    
                 ]
                 )
 
@@ -241,7 +286,7 @@ def create_modulo_content_3():
                 style = {'text-align':'center'},
                 id = "div_btn_modal"
                 ),
-
+            dmc.Space(h=50),
             
                                         
 
@@ -256,7 +301,9 @@ def create_modulo_content_3():
             )
 
 
-        ]),#divisao_1
+        ], style={
+        #'border': 'thin grey solid',
+        }),#divisao_1
         dmc.Space(h=50),
     ]
     ),#className="p-xl-5", 

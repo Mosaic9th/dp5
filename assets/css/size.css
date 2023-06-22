@@ -1,0 +1,194 @@
+/* 
+.mantine-1gt7cpf {
+
+    padding-right: 00px !important;
+
+}
+*/
+
+
+
+/* On all screens:  */
+#banner_2, #banner_3, #banner_4, #banner_5, #banner_6, #banner_7, #banner_8, #banner_9, #banner_10, #banner_11, #banner_12, #banner_13, #banner_14, #banner_15,
+#banner_2_mobile, #banner_4_mobile, #banner_5_mobile, #banner_9_mobile, #banner_13_mobile, #banner_14_mobile, #banner_15_mobile{
+
+    background: repeating-linear-gradient(
+        -55deg,
+        #222,
+        #222 10px,
+        #333 10px,
+        #333 20px
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#banner_1{
+    background: repeating-linear-gradient(
+        -55deg,
+        #FFF,
+        #FFF 10px,
+        #f7f7f7e2 10px,
+        #f7f7f7e2 20px
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+
+/* On screens that are 767px or less: */
+
+@media screen and (max-width: 767px) {
+
+    /*
+    #modulo_navbar {
+        display: none;
+    }
+    */
+
+    #div_tabela {
+        overflow: scroll;
+    }
+
+    #div_graph{
+        overflow: scroll;
+    }
+  
+
+    #card_div_graph{
+        min-width: 700px;
+    }
+    
+    #div_graph3{
+        overflow: scroll;
+    }
+    
+    #card_div_graph3{
+        min-width: 700px;
+    }
+    
+    #div_graph2{    
+        overflow: scroll;
+    }
+    
+    #card_div_graph2{
+        min-width: 700px;
+    }
+    
+    #div_grafico_1f, #div_grafico_2f, #div_grafico_3f, #div_grafico_4f, #div_grafico_5f, #div_grafico_6f, #div_grafico_7f, #div_grafico_8f{
+            
+        overflow: scroll;
+    }
+    
+    #card_grafico_1f, #card_grafico_2f, #card_grafico_3f, #card_grafico_4f, #card_grafico_5f, #card_grafico_6f, #card_grafico_7f, #card_grafico_8f{
+        min-width: 700px;
+    }
+  
+    #col_ft_1{
+        border-right: none !important;
+        border-left: none !important;  
+    }
+
+    #col_ft_2{
+        border-right: none !important;
+        border-left: none !important;
+        border-bottom: thin white solid;
+        border-top: thin white solid;  
+    }
+
+    #col_ft_3{
+        border-right: none !important;
+        border-left: none !important;  
+    }
+
+    #div_bn_0 {
+        text-align: center!important;     
+      }
+
+
+    /* Exibição dos banners mobile: 2, 4, 5, 9,13, 14, 15 */
+    #div_content_banner_2_mobile{
+
+        display: block !important;
+    }
+
+    #div_content_banner_4_mobile, #div_content_banner_5_mobile, #div_content_banner_9_mobile, #div_content_banner_13_mobile,
+    #div_content_banner_14_mobile, #div_content_banner_15_mobile{
+
+        display: block !important;
+    }
+
+    
+
+
+}
+
+
+/* On screens that are 996px or less: */
+
+@media screen and (max-width: 1400px) {
+
+    /* 
+    body{
+        background-color: #FFF;
+    }
+    */
+
+   
+
+    #configuracao, #col_acoes_setor, #col_monte_carteira, #col_banner_0, #col_quadro_resumo, #col_bk_graphs{
+
+       width:100% !important;
+       
+    }
+
+    #col_graph{
+
+        width:100% !important;
+        margin-top: 50px !important;
+    }
+
+    /* Exibição dos banners mobile: 2, 4, 5, 9,13, 14, 15 */
+    #div_content_banner_2_mobile{
+
+        display: block !important;
+    }
+
+    #div_content_banner_4_mobile, #div_content_banner_5_mobile, #div_content_banner_9_mobile, #div_content_banner_13_mobile,
+    #div_content_banner_14_mobile, #div_content_banner_15_mobile{
+
+        display: block !important;
+    }
+
+}
+
+/* On screens that are 1400px or less: */
+    
+@media screen and (max-width: 1400px) {
+    #banner_2,  #banner_3, #banner_4, #banner_5, #banner_6, #banner_7, #banner_8, #banner_9, #banner_10, #banner_11, #banner_12, #banner_13, #banner_14, #banner_15, #banner_2_p, #banner_4_p, #banner_5_p, #banner_6_p, #banner_7_p, #banner_8_p, #banner_9_p, #banner_10_p, #banner_11_p, #banner_12_p, #banner_13_p, #banner_14_p, #banner_15_p{
+        display: none;
+    }
+
+    #div_content_banner_2, #div_content_banner_3, #div_content_banner_4, #div_content_banner_5,  #div_content_banner_6, #div_content_banner_7, #div_content_banner_8, #div_content_banner_9, #div_content_banner_10_11_12, #div_content_banner_13, #div_content_banner_14, #div_content_banner_15{
+        display: none;
+    }
+
+    /* 
+    body{
+        background-color: #FFF;
+    }
+    */
+    
+}

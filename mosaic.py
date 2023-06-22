@@ -24,10 +24,12 @@ from modulos.modulo_navbar import create_modulo_navbar
 modulo_navbar = create_modulo_navbar()
 from modulos.modulo_footer import create_modulo_footer
 modulo_footer = create_modulo_footer()
+from modulos.modulo_footer_b import create_modulo_footer_b
+modulo_footer_b = create_modulo_footer_b()
 
 #callbacks / layouts
 import callbacks
-from layouts import layout_home, layout_relatorio, layout_login, layout_criar_conta, layout_redefinir_senha, layout_contato, layout_lgpd, layout_minha_conta, layout_politica_de_privacidade, layout_termos_de_uso, layout_quem_somos, layout_documentacao, layout_404
+from layouts import layout_home, layout_login, layout_criar_conta, layout_redefinir_senha, layout_contato, layout_lgpd, layout_minha_conta, layout_politica_de_privacidade, layout_termos_de_uso, layout_quem_somos, layout_documentacao, layout_404
 
 
 
@@ -52,7 +54,10 @@ app.layout = html.Div([
      html.Div(id='page-content', style= {'min-height': '80vh'}),
 
      html.Div(
+     [
      modulo_footer,
+     modulo_footer_b,
+     ]
      )
     
 ])
@@ -63,8 +68,6 @@ def display_page(pathname):
 
      if pathname == '/':
           return layout_home
-     elif pathname == '/relatorio':
-          return layout_relatorio
      elif pathname == '/login':
           return layout_login
      elif pathname == '/criar-conta':
@@ -89,4 +92,4 @@ def display_page(pathname):
           return layout_404
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

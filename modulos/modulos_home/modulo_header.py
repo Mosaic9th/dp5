@@ -17,6 +17,9 @@ import dash_mantine_components as dmc
 
 #modulos
 
+from modulos.modulos_banner.banner_01 import banner_01
+
+
 #callbacks / layouts
 
 #outros
@@ -64,36 +67,67 @@ def create_modulo_header():
                         'min-height':'260px',
                         }
                     ),
-                    md=8, 
+                    md=8, id='col_monte_carteira',
                   
                 ),
                         
                 dbc.Col(
                     [
-                    dmc.Space(h=15),
+                    #dmc.Space(h=15),
+                    
+                    #banner_1
                     html.Div(
-                        html.Img(src=r'assets/images/banner.png', width="300px", height="250px", 
-                            style={
-                                'maxWidth': '100%',
-                                'maxHeight': '100%',          
-                                },
-                        #className="p-2 mb-2 ",
-                            ),
-                            style={
-                            #'border': 'thin grey solid',
-                            'height':'250px',
-                            'text-align': 'center'
-                            }
+                    [
+                        #dmc.Space(h=30),
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'25px',
+                        'text-align': 'center'
+                        },
+                        id = 'banner_1_p', 
+                        
+                        ),
+                        html.Div(
+                            banner_01(),
+                            #dmc.Space(h=30),
+
+                        style={             
+                        'text-align': 'center',
+                        'height':'250x',
+                        #'width': '300px',
+                        },       
+                        id = 'banner_1', 
+                        ),
+    
+                        
+
+                    ], id = 'div_content_banner_1', 
+                    #style={    
+                    #'text-align': 'center'
+                #}    
+                    
+
                     ),
+                    #html.Div(
+                        #coinext_300x300(),
+                           #style={
+                            #'border': 'thin grey solid',
+                            #'height':'250px',
+                            #'text-align': 'right'
+                            #}, id= 'div_bn_0'
+                    #),
                     dmc.Space(h=50),
-                    ],md=4, 
+                    ],md=4, id='col_banner_0',
 
                 ),
 
-            ],
+            ],className="gx-5",
             ),
 
-        ],
+        ], style={
+        #'border': 'thin grey solid',
+        }
 
         ),
         dmc.Space(h=20), 

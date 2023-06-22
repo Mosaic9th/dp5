@@ -28,7 +28,7 @@ import dash_mantine_components as dmc
 p0 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p0', disabled = True,),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb0', disabled = False, persistence = True, persistence_type = 'session',),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb0', disabled = False, persistence = True, persistence_type = 'session', style={'display':'none'}),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -38,7 +38,7 @@ p0 = dbc.InputGroup(
 p1 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p1', disabled = True,),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb1', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb1', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -49,7 +49,7 @@ p1 = dbc.InputGroup(
 p2 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p2', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb2', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb2', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -59,7 +59,7 @@ p2 = dbc.InputGroup(
 p3 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p3', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb3', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb3', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -69,7 +69,7 @@ p3 = dbc.InputGroup(
 p4 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p4', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb4', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb4', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -79,7 +79,7 @@ p4 = dbc.InputGroup(
 p5 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p5', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb5', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb5', disabled = False, persistence = True, persistence_type = 'session', style={'display':'none'}),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -89,7 +89,7 @@ p5 = dbc.InputGroup(
 p6 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p6', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01',min=0.01, max=99.99, step=0.01,id ='pb6', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01',min=0.01, max=99.99, step=0.01,id ='pb6', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -99,7 +99,7 @@ p6 = dbc.InputGroup(
 p7 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p7', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb7', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb7', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -109,7 +109,7 @@ p7 = dbc.InputGroup(
 p8 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p8', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb8', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb8', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -119,7 +119,7 @@ p8 = dbc.InputGroup(
 p9 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p9', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb9', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb9', disabled = False, persistence = True, persistence_type = 'session', style={'display':'none'}),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -129,7 +129,7 @@ p9 = dbc.InputGroup(
 p10 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p10', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb10', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb10', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -139,7 +139,7 @@ p10 = dbc.InputGroup(
 p11 = dbc.InputGroup(
     [    
     dbc.Input(placeholder="", type="number", value= '0', min=0.01, max=99.99, step=0.01,id ='p11', disabled = True, ),
-    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb11', disabled = False, persistence = True, persistence_type = 'session', ),
+    dbc.Input(placeholder="", type="number", value= '0.01', min=0.01, max=99.99, step=0.01,id ='pb11', disabled = False, persistence = True, persistence_type = 'session',style={'display':'none'} ),
     dbc.InputGroupText("%"),            
     ],
     #className="mb-3",
@@ -168,7 +168,7 @@ table_header = [
         
 table_body = [html.Tbody(body_lista)]
 
-table = html.Div( children =dbc.Table(table_header + table_body, striped=False, bordered=True, hover=True, responsive= False,color="dark"), id='table', style = {'text-align':'center'})
+table = html.Div( children =dbc.Table(table_header + table_body, striped=False, bordered=True, hover=True, responsive= False,color="#222222"), id='table', style = {'text-align':'center'}, )
 
 # TABELA END #
 
@@ -182,18 +182,25 @@ def create_modulo_content_2():
         html.Div(
         [
 
+            dmc.Space(h=20),
+            html.Div(
+                html.H3("Configure o peso de cada ação na sua carteira:", className="p-3 mb-2 text-md-center"),
+                style={
+                    'text-align': 'center',
+                },
+            ),
+             
+            dmc.Space(h=20),
             dbc.Row(
             [
+                
                 html.Div(
                 [
-                    dmc.Space(h=20),
-                    html.H3("Configure o peso de cada ativo na carteira:", className="p-3 mb-3 text-md-center"),
-                    dmc.Space(h=30),
+                    
+                    
+                    
                     html.Div(table, id ="div_tabela", style = {'text-align':'center'} ),
-                    html.Div(
-                    dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_tabela"),
-                    id ="div_spinner_tabela", className="p-2 mb-2 text-md-center", 
-                    ),
+                    
 
                     html.Div(
                     [
@@ -212,14 +219,25 @@ def create_modulo_content_2():
                     ),
                 
                 ],#className="p-2 mb-2 ", 
-                id= 'div_table',  
-                ), 
+                id= 'div_table',  style = {'display':'none'}
+                ),
+
+                html.Div(
+                    [
+                    dmc.Space(h=25),
+                    dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_tabela"),
+                    dmc.Space(h=25),
+                    ],
+                    id ="div_spinner_tabela", className="text-md-center", style={"height": "150px", 'text-align': 'center'}
+                    ), 
 
             ],  
             ),
 
         ],
-        #className="p-xl-5",
+        style={
+        #'border': 'thin grey solid',
+        }
         ),
 
     ], 

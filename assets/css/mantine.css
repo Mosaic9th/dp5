@@ -1,11 +1,12 @@
 .mantine-mz51ii {
 
     color: #ffffff;
-    padding: 0px 18px 18px 12px;
+    padding: 20px 0px 0px 0px !important;
 }
 
 .mantine-mz51ii:hover {
     background-color: transparent;
+    padding: 20px 0px 0px 0px !important;
 }
 
 .btn-link {

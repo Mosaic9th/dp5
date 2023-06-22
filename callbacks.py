@@ -34,7 +34,7 @@ import locale
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8') 
 
 # importando a lista dos códigos das ações
-carteira_ibov_bruta = pd.read_csv('dados/parametros_ibov/dados_ibov.csv')
+carteira_ibov_bruta = pd.read_csv('assets/dados/parametros_ibov/dados_ibov.csv')
 codigos_lista = carteira_ibov_bruta['Código'].values.tolist()
 codigos_lista = sorted(codigos_lista)
 ibov_tabela = carteira_ibov_bruta[['Código', 'Ação', 'Setor']] 
@@ -55,7 +55,7 @@ from cfd import (cadastro_firebase, login_firebase, validar_email, validar_senha
                 )
 
 # importando a amplitudes dos meses
-amplitude_mes = pd.read_csv('dados/parametros_ibov/amplitude_mes.csv')
+amplitude_mes = pd.read_csv('assets/dados/parametros_ibov/amplitude_mes.csv')
 
 # cores_theme
 primary = 'rgb(55,90,127)'
@@ -110,7 +110,7 @@ def alert_benchmark(dropdown_benchmarks, dia_inicial, dropdown_mes_inicio, dropd
     
     if 'Bitcoin' in dropdown_benchmarks:
 
-        btc_hist = pd.read_csv('dados/benchmarks/Bitcoin.csv')
+        btc_hist = pd.read_csv('assets/dados/benchmarks/Bitcoin.csv')
         
         btc_hist['Date'] = pd.to_datetime(btc_hist['Date'])
 
@@ -248,7 +248,7 @@ def selected_stocks_data (codigos_ativos, mes_inicio, ano_inicio, mes_fim, ano_f
         for i in codigos_ativos:
             
             ativos_to_read =  codigos_ativos[0+n]
-            hist_ativo = pd.read_csv('dados/stocks/'+ ativos_to_read +'.csv')
+            hist_ativo = pd.read_csv('assets/dados/stocks/'+ ativos_to_read +'.csv')
             n = n+1
 
             hist_ativo['Date'] = pd.to_datetime(hist_ativo['Date'])
@@ -282,16 +282,19 @@ def selected_stocks_data (codigos_ativos, mes_inicio, ano_inicio, mes_fim, ano_f
         grafico = go.Figure()
 
         n = 0
-        for i in todos:
-            col_name = i
 
-            grafico.add_trace(go.Scatter(x=todos.index, y=todos[i],
-                                mode='lines', # 'lines' or 'markers'
-                                name=col_name,
-                                line_color = lista_cores_12[n]                            
-                                ))
-            n = n +1
-            
+        if len(codigos_ativos)<=12:
+            for i in todos:
+                col_name = i
+
+                grafico.add_trace(go.Scatter(x=todos.index, y=todos[i],
+                                    mode='lines', # 'lines' or 'markers'
+                                    name=col_name,
+                                    line_color = lista_cores_12[n]                            
+                                    ))
+                n = n +1
+        else:
+            pass  
         #grafico.update_layout(margin=dict(l=30, r=30, t=30, b=30),paper_bgcolor='rgba(0,0,0,0)' ) 
 
         
@@ -428,7 +431,7 @@ def opcao_callapse(checklist_dividendos, checklist_mensal):
     Output ("div_spinner_grafico", "style"),
     Output ("div_graph", "style"),
     Output ("div_spinner_tabela", "style"),
-    Output ("div_tabela", "style"),
+    Output ("div_table", "style"),
     Output("disable_rodar_2", 'data'),
     ],
     [
@@ -454,7 +457,7 @@ def exibir_grafico(danger_1, danger_2, danger_3, danger_4, danger_5, danger_6, d
 
     else:
         #corrigir
-        return {'display': 'block',"max-height": "500px", "padding-top": "200px"}, {'display': 'none'}, {'display': 'block'}, {'display': 'none'}, True
+        return {'display': 'block'}, {'display': 'none'}, {'display': 'block'}, {'display': 'none'}, True
 
 
 # preenchendo_tabela
@@ -1220,7 +1223,7 @@ def exibir_outros_graficos(soma,danger_1, danger_2, danger_3, danger_4, danger_5
             
         else:
             #corrigir
-            return {'display': 'block', "max-height": "500px", "padding-top": "175px"}, {'display': 'none'}, {'display': 'block', "max-height": "500px", "padding-top": "175px"}, {'display': 'none'}, True
+            return {'display': 'block'}, {'display': 'none'}, {'display': 'block'}, {'display': 'none'}, True
 
     #else:
         #raise PreventUpdate
@@ -1539,8 +1542,9 @@ def grafico_setor(dropdown_codigos_ativos, checklist_alocado, p0, p1, p2, p3, p4
         #print(df_setor)
 
         grafico = go.Figure(data=[go.Pie(labels=df_setor.name, values=df_setor.value, hoverinfo="label+percent", hole=.3 )], layout_showlegend=True,)
-        grafico.update_layout(margin=dict(l=50, r=50, t=50, b=50),
-                              title="PERCENTUAL ALOCADO POR SETOR ECONÔMICO:",)
+        grafico.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', margin=dict(l=50, r=50, t=50, b=50),
+                              title="PERCENTUAL ALOCADO POR SETOR ECONÔMICO:",
+                              )
 
         grafico.update_traces(
                   marker=dict(colors=df_setor['colors'], ))
@@ -1873,9 +1877,10 @@ def grafico_acao(dropdown_codigos_ativos, checklist_alocado, p0, p1, p2, p3, p4,
         #print(df_acao)
 
         grafico = go.Figure(data=[go.Pie(labels=df_acao.name, values=df_acao.value, hoverinfo="label+percent", hole=.3 ), ], layout_showlegend=True,)
-        grafico.update_layout(margin=dict(l=50, r=50, t=50, b=50),
-                              title="PERCENTUAL ALOCADO POR AÇÃO:",)
-
+        grafico.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', margin=dict(l=50, r=50, t=50, b=50),
+                              title="PERCENTUAL ALOCADO POR AÇÃO:",
+                              )
+       
         grafico.update_traces(
                   marker=dict(colors=df_acao['colors']))
         #print('!!!!!!!!!ddsds!!!!!!!!!!!!!!')
@@ -2674,9 +2679,9 @@ def perfil_temp_para_perfil_1 (dados_path_temp_1, dados_path_temp_2, dados_path_
 def logado_ou_nao(dados_perfil):
 
     if dados_perfil [0] == 'Visitante' and dados_perfil [1] == None and dados_perfil [2] == None and dados_perfil [3] == None:
-        return {'display': 'none'}, {'display': 'block'}
+        return {'display': 'none'}, None
     else:
-        return {'display': 'block'}, {'display': 'none'}
+        return None, {'display': 'none'}
 
 
 #redirect
@@ -3573,7 +3578,7 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
 
         #print(df_acoes)
 
-        amplitude_mes = pd.read_csv('dados/parametros_ibov/amplitude_mes.csv')
+        amplitude_mes = pd.read_csv('assets/dados/parametros_ibov/amplitude_mes.csv')
 
         amplitude_mes['amplitude_fim'] = pd.to_datetime(amplitude_mes['amplitude_fim'] )
 
@@ -4150,7 +4155,7 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
         
         
         ######### benchmarks
-        df_bench = pd.read_csv('dados/benchmarks/Ibovespa.csv')
+        df_bench = pd.read_csv('assets/dados/benchmarks/Ibovespa.csv')
         df_bench['Date'] = pd.to_datetime(df_bench['Date'])
         df_bench.set_index('Date', inplace=True)
         
@@ -4163,7 +4168,7 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
             else:
                 
                 bench_to_read =  dropdown_benchmarks_data[0+n]
-                hist_bench = pd.read_csv('dados/benchmarks/'+ bench_to_read +'.csv')
+                hist_bench = pd.read_csv('assets/dados/benchmarks/'+ bench_to_read +'.csv')
                 n = n+1
 
                 hist_bench['Date'] = pd.to_datetime(hist_bench['Date'])
@@ -4390,6 +4395,9 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
         
         grafico_1.update_layout(
             margin=dict(l=50, r=50, t=50, b=50),
+            #autosize=False,
+            #width=500,
+            #height=600,
             paper_bgcolor='rgba(0,0,0,0)', 
             title="HISTÓRICO DO RENDIMENTO DA CARTEIRA:",
             xaxis={'title': 'DATA','fixedrange':True},
@@ -4430,6 +4438,9 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
         
         grafico_2.update_layout(
             margin=dict(l=50, r=50, t=50, b=50),
+            #autosize=False,
+            #width=500,
+            #height=600,
             paper_bgcolor='rgba(0,0,0,0)', 
             title="HISTÓRICO DA VALORIZAÇÃO DA CARTEIRA VS APORTES:",
             xaxis={'title': 'DATA','fixedrange':True},
@@ -4470,7 +4481,7 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
         grafico_3.update_layout(
             margin=dict(l=50, r=50, t=50, b=50),
             paper_bgcolor='rgba(0,0,0,0)', 
-            title="RENDIMENTO VS APORTES POR AÇÃO:",
+            title="APORTES VS RENDIMENTO POR AÇÃO:",
             xaxis={'title': 'AÇÃO','fixedrange':True},
             yaxis={'title': 'VALOR (R$)','fixedrange':True},
             showlegend=False
@@ -4603,6 +4614,9 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
         
         grafico_7.update_layout(
             margin=dict(l=50, r=50, t=50, b=50),
+            #autosize=False,
+            #width=500,
+            #height=600,
             paper_bgcolor='rgba(0,0,0,0)', 
             title="HISTÓRICO DA RENDABILIDADE DA CARTEIRA VS BENCHMARK(S):",
             xaxis={'title': 'DATA','fixedrange':True},
@@ -4666,12 +4680,35 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
         ########## Grafico_8 HISTÓRICO DA RENDABILIDADE DA CARTEIRA VS BENCHMARK(S)::
         grafico_8 = go.Figure()
 
+
+
+        for i in rentabilidade_final ['ativos']:
+
+            print('i')
+            print(i)
+        
         grafico_8.add_trace(go.Bar(
         x = rentabilidade_final ['ativos'],
         y = rentabilidade_final['rentabilidade'],
         name='Rentabilidade',
-        marker_color=rentabilidade_final["color"])
-        )
+        marker_color=rentabilidade_final["color"],
+        #marker_pattern_shape="x",
+        #marker_line_color="black",
+        #color=cor4,
+        marker=dict(pattern_fillmode='overlay', line_color=rentabilidade_final["color"],line_width=1 )#, pattern_fillmode="overlay")#line_color=rentabilidade_final["color"],line_width=2
+    
+        ),
+        ),
+
+        print('rentabilidade_final')
+        print(rentabilidade_final)
+        
+
+        #grafico_8.update_traces(
+        #    marker=dict(color="white", line_color="black", pattern_fillmode="replace")
+        #),
+        
+        
 
         grafico_8.update_layout(
             margin=dict(l=50, r=50, t=50, b=50),
@@ -4697,9 +4734,9 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
 
         ########## Relatório
 
-        leg_1 = 'R$ {:,.2f}'.format(valor_da_carteira_valor)#.replace(".", ",")
+        leg_1 = 'R$ {:.2f}'.format(valor_da_carteira_valor)#.replace(".", ",")
 
-        leg_2 = 'R$ {:,.2f}'.format(total_aportado_valor)#.replace(".", ",")
+        leg_2 = 'R$ {:.2f}'.format(total_aportado_valor)#.replace(".", ",")
 
         leg_3 = go.Figure()
         leg_3 = go.Figure(go.Indicator(
@@ -4803,9 +4840,9 @@ def revendo_graficos(dropdown_codigos_ativos_data, data_inicial_data, data_final
 @callback(
 
     [
-    Output('card_dividendos', 'style'),
-    Output('card_benchmarks_1', 'style'),
-    Output('card_benchmarks_2', 'style'),
+    Output('row_dividendos', 'style'),
+    Output('row_benchmarks_1', 'style'),
+    Output('row_benchmarks_2', 'style'),
     ],
     [
     Input ('aportes_data', 'data'),
@@ -4818,21 +4855,21 @@ def cards_especificos(aportes_data, dropdown_benchmarks_data):
     print(aportes_data[3])
     print(dropdown_benchmarks_data)
 
-    style_card_dividendos = {"max-height": "600px","min-height": "500px"}
-    style_card_benchmarks_1 = {"max-height": "600px","min-height": "500px"}
-    style_card_benchmarks_2 = {"max-height": "600px","min-height": "500px"}
+    style_row_dividendos = {}
+    style_row_benchmarks_1 = {}
+    style_row_benchmarks_2 = {}
 
 
     if aportes_data[3] == '0':
 
-        style_card_dividendos = {"display": "none"}
+        style_row_dividendos = {"display": "none"}
    
     if dropdown_benchmarks_data == []:
 
-        style_card_benchmarks_1 = {"display": "none"}
-        style_card_benchmarks_2 = {"display": "none"}
+        style_row_benchmarks_1 = {"display": "none"}
+        style_row_benchmarks_2 = {"display": "none"}
 
     else:
         pass
-    return style_card_dividendos, style_card_benchmarks_1, style_card_benchmarks_2
+    return style_row_dividendos, style_row_benchmarks_1, style_row_benchmarks_2
 

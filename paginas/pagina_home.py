@@ -21,8 +21,8 @@ modulo_content_2 = create_modulo_content_2()
 from modulos.modulos_home.modulo_content_3 import create_modulo_content_3
 modulo_content_3 = create_modulo_content_3()
 
-from modulos.modulos_relatorio.modulo_content_r_1 import create_modulo_content_r_1
-modulo_content_r_1 = create_modulo_content_r_1()
+from modulos.modulos_relatorio.modulo_backtest import create_modulo_backtest
+modulo_backtest = create_modulo_backtest()
 
 #paginas
 
@@ -40,7 +40,7 @@ def create_pagina_home():
         modulo_content_1,
         modulo_content_2,
         modulo_content_3,
-        modulo_content_r_1
+        modulo_backtest
 
     ], id = 'pagina_home'
     )

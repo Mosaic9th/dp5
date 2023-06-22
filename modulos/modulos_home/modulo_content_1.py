@@ -18,6 +18,14 @@ import dash_mantine_components as dmc
 #paginas
 
 #modulos
+from modulos.modulos_banner.banner_02 import banner_02
+from modulos.modulos_banner.banner_03 import banner_03
+from modulos.modulos_banner.banner_04 import banner_04
+
+
+from modulos.modulos_banner.banner_02_mob import banner_02_mob
+from modulos.modulos_banner.banner_04_mob import banner_04_mob
+
 
 #callbacks / layouts
 
@@ -26,7 +34,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # importando a lista dos códigos das ações
-carteira_ibov_bruta = pd.read_csv('dados/parametros_ibov/dados_ibov.csv')
+carteira_ibov_bruta = pd.read_csv('assets/dados/parametros_ibov/dados_ibov.csv')
 codigos_lista = carteira_ibov_bruta['Código'].values.tolist()
 codigos_lista = sorted(codigos_lista)
 ibov_tabela = carteira_ibov_bruta[['Código', 'Ação', 'Setor']] 
@@ -70,80 +78,145 @@ def create_modulo_content_1():
         [
             dmc.Space(h=50), 
 
-            html.H3("Configure sua carteira:", className="p-4 mb-4 text-md-center", style = {'text-align': 'center'}, id = "config_cart"), 
+            html.Div(
+                html.H3("Configure sua carteira:", className="p-3 mb-2 text-md-center"),
+                style={
+                    'text-align': 'center',
+                },
+            ),
+
             dmc.Space(h=10),
 
             dbc.Row(
             [
-
                 dbc.Col(
+                [ 
+                    
+
+                    #div_composicao
+                    html.Div(
                     [
-                   
-                    dmc.Space(h=20),
-
-                    html.Div(
-                        [                        
-                        dbc.FormText("Selecione até 12 ações para montar sua carteira:"),
-                        
-                        ################# dropdown_codigos_ativos_data
-                        dcc.Dropdown(                           
-                            options = codigos_lista,
-                            value =['PETR3'],
-                            id = 'dropdown_codigos_ativos',
-                            multi=True,
-                            placeholder="Selecione ou digite o código",
-                            persistence = True,
-                            persistence_type = 'session'
-                          
-                        ),
-                    ],
-
-                    ),
-
-                    html.Div(children=[
-                        dbc.Alert(
+                        #card_composicao
+                        dbc.Card(
                         [
-                            html.I(className="bi bi-x-octagon-fill me-4"),
-                            "Selecione no máximo doze ações.",
-                        ],
-                        color="danger",
-                        className="d-flex align-items-center",
-                        id= "danger_dropdown_codigos_ativos",
-                        is_open = False,
-                        ),
-
-                        dbc.Alert(
-                            [
-                            html.I(className="bi bi-x-octagon-fill me-4", 
-                            ), "Você precisa escolher ao menos uma ação.", 
+                            dmc.Space(h=10),
+                            dbc.CardHeader("COMPOSIÇÃO DA CARTEIRA:", style={"background-color": "#222222", 'border':'none'}),
+                            dbc.CardBody([
+                                dbc.FormText("Selecione até 12 ações para montar sua carteira:"),
+                                ################# dropdown_codigos_ativos_data
+                                dcc.Dropdown(                           
+                                    options = codigos_lista,
+                                    value =['PETR3'],
+                                    id = 'dropdown_codigos_ativos',
+                                    multi=True,
+                                    placeholder="Selecione ou digite o código",
+                                    persistence = True,
+                                    persistence_type = 'session'
+                                ),
+                            
+                                html.Div(children=[
+                                    dbc.Alert(
+                                    [
+                                        html.I(className="bi bi-x-octagon-fill me-4"),
+                                        "Selecione no máximo 12 ações.",
+                                    ],
+                                    color="danger",
+                                    className="d-flex align-items-center",
+                                    id= "danger_dropdown_codigos_ativos",
+                                    is_open = False,
+                                    ),
+                                    dbc.Alert(
+                                    [
+                                        html.I(className="bi bi-x-octagon-fill me-4", 
+                                        ), "Você precisa escolher ao menos uma ação.", 
+                                    ],
+                                    color="danger",
+                                    className="d-flex align-items-center",
+                                    id= "danger_dropdown_codigos_ativos_zerado",
+                                    is_open = False,  
+                                    ),
+                        
+                                ],
+                                style={"padding-top": "10px",}
+                                ),
                             ],
-                            color="danger",
-                            className="d-flex align-items-center",
-                            id= "danger_dropdown_codigos_ativos_zerado",
-                            is_open = False,  
-                        ),
-                        
-                    ],
-                    style={"padding-top": "10px",}
-                    ),
+                            ),
+                        ],style={"background-color": "#222222", 'border': 'thin #333333 solid',}
+                        ),#fim_card_composicao
+                    ]
+                    ),#fim_div_composicao
 
+                    
+                    #dmc.Space(h=10),
+                    #banner_2
                     html.Div(
-                        [
-
-                        dmc.Space(h=10), 
-                        html.Img(src=r'assets/images/banner.png', width="480x", height="320px", 
-                            className="p-3 mb-2 text-md-center",
-                            style={
-                                'maxWidth': '100%',
-                                'maxHeight': '100%',
-                            },
+                    [
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'15px',
+                        #'text-align': 'center'
+                        },
+                        id = 'banner_2_p', 
+                        
                         ),
+                        html.Div(
+                            banner_02(),
+                        style={             
+                        #'text-align': 'center',
+                        'height':'100px',
 
-                        dmc.Space(h=10), 
-                        ],style = {'text-align': 'center'}
+                        },       
+                        id = 'banner_2', 
+                        ),
+    
+                        dmc.Space(h=20),
+
+                    ], id = 'div_content_banner_2', 
                     ),
 
-                    dbc.Row([
+                    #banner_2_mobile
+                    html.Div(
+                    [
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'15px',
+                                                },
+                        id = 'banner_2_p_mobile', 
+                        
+                        ),
+                        html.Div(
+                            banner_02_mob(),
+                        style={             
+                        
+                        'height':'300px',
+                        },       
+                        id = 'banner_2_mobile', 
+                        ),
+    
+                        dmc.Space(h=20),
+
+                    ], id = 'div_content_banner_2_mobile', 
+                    style={'display':'none'}
+                    ),
+                   
+                   
+
+                    dmc.Space(h=10),
+
+                    #div_periodo
+                    html.Div(
+                    [
+                    dbc.Card(
+                    [
+                        dmc.Space(h=10),
+                        dbc.CardHeader("PERÍODO:", style={"background-color": "#222222", 'border':'none'}),
+                        
+
+                        dbc.CardBody([
+
+                            dbc.Row([
 
                         dbc.Col([
 
@@ -240,15 +313,8 @@ def create_modulo_content_1():
                     style={"padding-top": "15px",}
                     ),
 
-
-
-
-
-
-                    
-                    ],#style={"padding-top": "10px", "padding-bottom": "10px"}
+                    ],
                     ), 
-                    #
 
                     dbc.Row([
 
@@ -318,7 +384,7 @@ def create_modulo_content_1():
                             ),
 
                             
-                        ], md=4,),
+                        ], md=4, ),
 
                         
                     html.Div(children=
@@ -346,264 +412,371 @@ def create_modulo_content_1():
                     ],
                     style={"padding-top": "15px",}
                     ),
-
-
-                    html.Div(
-                        [
-                        
-                        dbc.FormText("Digite o valor de investimento inicial (mín. R$ 100,00):"),
-                       
-
-                        dbc.InputGroup(
-                            [    
-                            dbc.InputGroupText("R$"),
-                            dbc.Input(placeholder="", type="number", min=100, max=1000000000, value= '1000',step=1,id="investimento_inicial", persistence = True, persistence_type = 'session'),
-                            dbc.InputGroupText(",00"),            
-                            ],
-                            className="mb-3",),
-                        
-                        ],#style={"padding-top": "10px", "padding-bottom": "0px"}
-                        ),
-
-                    html.Div(
-                        [ 
-                        dbc.Alert(
-                            [
-                            html.I(className="bi bi-x-octagon-fill me-4"
-                            ), "O valor inicial deve estar entre R$ 100,00 e R$ 1.000.000.000,00.",
-                            ],
-                            color="danger",
-                            className="d-flex align-items-center",
-                            id= "danger_investimento_inicial",
-                            is_open = False
-                            ),
-                        ]),
-
-
-                    html.Div(
-                        [ 
-                        dmc.Space(h=10),
-                        dbc.Checklist(
-                            options=[
-                                {"label": "Realizar novos aportes mensais", "value": 1},
-                      
-                            ],
-
-                            value=[],
-                            #id="switches-inline-input",
-                            inline=True,
-                            switch=True,
-                            id= "checklist_mensal",
-                            persistence = True,
-                            persistence_type = 'session',
-                            
-                            
-                            
-                            
-                            ),
-                        ],#style={"padding-top": "10px", "padding-bottom": "10px"}
-                        ),
-                    
-                    dbc.Collapse(
-                        
-                        
-                        html.Div(
-                        [
-                        dbc.FormText("Digite o valor dos aportes mensais (mín. R$ 50,00):"),
-                        
-                        dbc.InputGroup(
-                            [    
-                            dbc.InputGroupText("R$"),
-                            dbc.Input(placeholder="", type="number",  min=50, max=1000000000, value= '500',step=1,id="valor_aporte_mensal", persistence = True, persistence_type = 'session'),
-                            dbc.InputGroupText(",00"),            
-                            ],
-                            className="mb-3",),
-                        
-                        ],id="investimento_mensal", style={"padding-top": "10px", "padding-bottom": "0px"}
-                        ),
-                        
-                        
-                        id="collapse_aporte_mensal",
-                        is_open=False,
+                
+                    ],#style={'border': 'thin #fff solid',}
                     ),
-                    
 
-                    
-                    html.Div(
-                        [ 
-                        dbc.Alert(
-                            [
-                            html.I(className="bi bi-x-octagon-fill me-4"
-                            ), "O valor deve estar entre R$ 100,00 e R$ 1.000.000.000,00.",
-                            ],
-                            color="danger",
-                            className="d-flex align-items-center",
-                            id= "danger_aporte_mensal",
-                            is_open = False
-                            ),
                         ]),
+                        
+                    ], style={"background-color": "#222222", 'border': 'thin #333333 solid',}
+                    )
 
+                    ]
+                    ),
+
+                    dmc.Space(h=20),
+
+                    #div_investimento
                     html.Div(
+                    [
+                        #card_investimento
+                        dbc.Card(
                         [
-                        dmc.Space(h=10),
-                        dbc.Checklist(
-                            options=[
-                                {"label": "Considerar dividendos", "value": 1},
-                            ],
-                            value=[],
-                            inline=True,
-                            switch=True,
-                            id= "checklist_dividendos",
-                            persistence = True,
-                            persistence_type = 'session'
-                            ),
-
-                        dbc.Collapse(
-                            html.Div(
+                            dmc.Space(h=10),
+                            dbc.CardHeader("INVESTIMENTO:", 
+                                style={
+                                    "background-color": "#222222", 
+                                    'border':'none'
+                                }
+                            ),                        
+                            dbc.CardBody(
                             [
-                                dmc.Space(h=10),
+                                dbc.FormText("Digite o valor de investimento inicial (mín. R$ 100,00):"),
+                                dbc.InputGroup(
+                                    [    
+                                    dbc.InputGroupText("R$"),
+                                    dbc.Input(placeholder="", type="number", min=100, max=1000000000, value= '1000',step=1,id="investimento_inicial", persistence = True, persistence_type = 'session'),
+                                    dbc.InputGroupText(",00"),            
+                                    ],
+                                    className="mb-3",),
+                                html.Div(
+                                    [ 
+                                    dbc.Alert(
+                                        [
+                                        html.I(className="bi bi-x-octagon-fill me-4"
+                                        ), "O valor inicial deve estar entre R$ 100,00 e R$ 1.000.000.000,00.",
+                                        ],
+                                        color="danger",
+                                        className="d-flex align-items-center",
+                                        id= "danger_investimento_inicial",
+                                        is_open = False
+                                        ),
+                                    ]),
+                                html.Div(
+                                    [ 
+                                    dmc.Space(h=10),
+                                    dbc.Checklist(
+                                        options=[
+                                            {"label": "Realizar novos aportes mensais", "value": 1},
+                                        ],
+                                        value=[],
+                                        inline=True,
+                                        switch=True,
+                                        id= "checklist_mensal",
+                                        persistence = True,
+                                        persistence_type = 'session',
+                                    ),
+                                ],
+                                ),
+                                dbc.Collapse(
+                                    html.Div(
+                                    [
+                                        dbc.FormText("Digite o valor dos aportes mensais (mín. R$ 50,00):"),
+                                        dbc.InputGroup(
+                                        [    
+                                            dbc.InputGroupText("R$"),
+                                            dbc.Input(placeholder="", type="number",  min=50, max=1000000000, value= '500',step=1,id="valor_aporte_mensal", persistence = True, persistence_type = 'session'),
+                                            dbc.InputGroupText(",00"),            
+                                        ],
+                                        className="mb-3",),
+                                
+                                    ],id="investimento_mensal", style={"padding-top": "10px", "padding-bottom": "0px"}
+                                    ),
+                                    id="collapse_aporte_mensal",
+                                    is_open=False,
+                                ),
+                                html.Div(
+                                [ 
+                                    dbc.Alert(
+                                    [
+                                        html.I(className="bi bi-x-octagon-fill me-4"
+                                        ), "O valor deve estar entre R$ 100,00 e R$ 1.000.000.000,00.",
+                                    ],
+                                    color="danger",
+                                    className="d-flex align-items-center",
+                                    id= "danger_aporte_mensal",
+                                    is_open = False
+                                    ),
+                                ],
+                                ),
+                            ]
+                            ),
+                        ], style={"background-color": "#222222", 'border': 'thin #333333 solid',}
+                        ),#fim_card_investimento
+                    ],
+                    ),#fim_div_investimento
+
+                    dmc.Space(h=20),
+
+                    #div_dividendos
+                    html.Div(
+                    [
+                        #card_dividendos 
+                        dbc.Card(
+                        [
+                            dmc.Space(h=10),
+                            dbc.CardHeader("DIVIDENDOS:", 
+                                style={
+                                    "background-color": "#222222", 
+                                    'border':'none'
+                                }
+                            ),
+                            dbc.CardBody(
+                            [
                                 dbc.Checklist(
                                     options=[
-                                        {"label": "Reinvestir dividendos", "value": 1},
+                                        {"label": "Considerar dividendos", "value": 1},
                                     ],
                                     value=[],
                                     inline=True,
                                     switch=True,
-                                    id= "checklist_dividendos_2",
+                                    id= "checklist_dividendos",
+                                    persistence = True,
+                                    persistence_type = 'session'
+                                    ),
+                                dbc.Collapse(
+                                    html.Div(
+                                    [
+                                        dmc.Space(h=10),
+                                        dbc.Checklist(
+                                            options=[
+                                                {"label": "Reinvestir dividendos", "value": 1},
+                                            ],
+                                            value=[],
+                                            inline=True,
+                                            switch=True,
+                                            id= "checklist_dividendos_2",
+                                            persistence = True,
+                                            persistence_type = 'session'
+                                        ),
+                                    ]
+                                    ),
+                                id="collapse_checklist_dividendos_2",
+                                is_open=False,
+                                ),
+                            ],
+                            ),
+
+                        ], style={"background-color": "#222222", 'border': 'thin #333333 solid',}
+                        ),#fim_card_dividendos 
+                    ], 
+                    ),#fim_div_dividendos
+
+                    dmc.Space(h=20),
+                    
+                    #div_benchmark(s)
+                    html.Div(
+                    [
+                        #card_benchmark(s) 
+                        dbc.Card(
+                        [
+                            dmc.Space(h=10),
+                            dbc.CardHeader("BENCHMARK(S):", 
+                                style={
+                                    "background-color": "#222222", 'border':'none'
+                                    }
+                                    ),
+                            dbc.CardBody([
+                                dbc.FormText("Selecione até 4 ativos para comparação de performance:"),
+                                dcc.Dropdown(                           
+                                    options = ['Ibovespa', 'CDI', 'Dólar Ptax', 'Bitcoin'],
+                                    value =['Ibovespa'],
+                                    id = 'dropdown_benchmarks',
+                                    multi=True,
+                                    placeholder="Selecione",
                                     persistence = True,
                                     persistence_type = 'session'
                                 ),
+                                html.Div(children=[
+                                    dmc.Space(h=10), 
+                                    dbc.Alert(
+                                    [    
+                                    ],color="danger",
+                                    className="d-flex align-items-center",
+                                    id= "danger_btc",
+                                    is_open = False,
+                                    ),
+                                ],
+                                ),
+                            ], 
+                            ),   
+                        ],style={"background-color": "#222222", 'border': 'thin #333333 solid'}  
+                        ),#fim_card_benchmark(s)   
+                    ],               
+                    ),#fim_div_benchmark(s)   
 
-                            ]
-                            ),
-                            
-                            id="collapse_checklist_dividendos_2",
-                            is_open=False,
-                        ),
-                        
-                        
-
-                        ] ,style={"padding-top": "10px", "padding-bottom": "30px"}
-                        ),
-                    
-                    
-                    html.Div(
-                    
-                    [
-                        html.H6("Comparar rentabilidade da carteira com (benchmarks):", style={"padding-top": "10px", "padding-bottom": "10px"}),
-
-                        dcc.Dropdown(                           
-                            options = ['Ibovespa', 'CDI', 'Dólar Ptax', 'Bitcoin'],
-                            value =['Ibovespa'],
-                            id = 'dropdown_benchmarks',
-                            multi=True,
-                            placeholder="Selecione",
-                            persistence = True,
-                            persistence_type = 'session'
-                          
-                        ),
-
-                        dmc.Space(h=10),
-
-                        html.Div(children=[
-                        dbc.Alert(
-                        [
-                            
-                        ],
-                        color="danger",
-                        className="d-flex align-items-center",
-                        id= "danger_btc",
-                        is_open = False,
-                        ),
-                        ]
-                        ),
-                        
-                        
-                    ], style={"padding-bottom": "30px"}
-                    ),
-
-                    
-                    
-                    ],
-                    ),
-                    
-                    ],
-                    md=5, 
-                    style={
-
-                    },
+                ], md=5, id='configuracao'
                 ),
+                #
 
-                dbc.Col(
-                
+                dbc.Col(    
                 [                      
                                                                     
-                    html.Div(children=[
+                    html.Div(
+        
+                    [
 
                         html.Div([
-
                             dbc.Card([
-                                
+
                                 dbc.CardBody([
                                     html.Div([
                                         dmc.Space(h=15),
-                                        #html.H5("Preço de Fechamento Ajustado (Diário):", className="card-title"),
                                         dcc.Graph( id='graph', config = {'displaylogo': False, 'displayModeBar': False},
                                             figure = go.Figure(layout = Layout(paper_bgcolor='rgba(0,0,0,0)', margin=dict(l=50, r=50, t=50, b=50))),
-                                        ),],
-                                        id = "div_graph",
-                                        style={"display":"none"}
-                                        
-                                    ),
-                                    html.Div(
-                                        dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_grafico"),
-                                    id ="div_spinner_grafico", style = {"max-height": "500px", "padding-top": "200px"} ),
-                            
+                                        ),
+                                    ],   
+                                    ), 
                                 ], 
                                 ),
                                 
-                            ],color="dark", inverse=True, style = {"max-height": "600px","min-height": "500px"}
+                            ],id = 'card_div_graph', color="dark",
                             ),
 
-                        ],
-                        #style={"overflow-x": "scroll",},
-                        className="p-2 mb-2 ",
+                        ],id = "div_graph",style={"display":"none"}
+                        ),
+
+                        html.Div([
+                            dbc.Card([
+
+                                dbc.CardBody([
+                                    html.Div(
+                                    [   
+                                        dmc.Space(h=180),
+                                        dbc.Spinner(spinner_style={"width": "100px", "height": "100px"},color="info", id = "spinner_grafico"),
+                                        dmc.Space(h=180),
+                                    ], #style = {"max-height": "480px"}
+                                    ),
+                                ],#style = {"max-height": "480px"},
+
+                                ),
+                            ],id = 'card_div_spinner_grafico', color="dark", style = {"height": "500px"},
+                            ),
+
+                        ],id ="div_spinner_grafico"
+                        ),
+                    
+                    #banner_3
+                    html.Div(
+                    [
+                        #dmc.Space(h=30),
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'30px',
+                        'text-align': 'center'
+                        },
+                        id = 'banner_3_p', 
                         
                         ),
                         html.Div(
-                            html.Img(src=r'assets/images/banner.png', width="750px", height="300px", 
-                                className="p-3 mb-2",
-                                style={
-                                    'maxWidth': '100%',
-                                    'maxHeight': '100%',
-                                },
-                            ),className="p-3 mb-2 "
+                            banner_03(),
+                        style={             
+                        'text-align': 'center',
+                        'height':'540px',
+                        #'width': '480px',
+                        },       
+                        id = 'banner_3', 
                         ),
-                            
-                            
-                    ],
-                    style={'maxWidth': '100%',},
-                    className="p-3 mb-2",
-                    id = 'div_certa',
-                    
-                    ),
-                    ],
-                    md=7, 
-                    style={
+    
                         
-                        'text-align': 'center'
-                        }    
+
+                    ], id = 'div_content_banner_3', 
+                    #style={    
+                    #'text-align': 'center'
+                #}    
+                    
+
+                    ),
+                        #banner_2
+                        #dmc.Space(h=50),
+                      
+                                   
+                    ],
+                    ),
+                ],
+                md=7, id='col_graph',
+                style={    
+                    'text-align': 'center'
+                }    
                 ),
-            ],
+            ],className="gx-5",
             ),
+            
+
+            
+
+                    #banner_4
+                    html.Div(
+                    [
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'30px',
+                        },
+                        id = 'banner_4_p', 
+                        ),
+                        html.Div(
+                            banner_04(),
+                        style={             
+                        'height':'250px',
+                        },       
+                        id = 'banner_4', 
+                        ),
+                ], id = 'div_content_banner_4', 
+                ),
+
+                #banner_4_mobile
+                    html.Div(
+                    [
+                        html.Div(
+                            dmc.Text("PUBLICIDADE", size="xs", color="gray",align="center"),
+                        style = {'height':'20px',
+                        'margin-top':'30px',
+                                                },
+                        id = 'banner_4_p_mobile', 
+                        
+                        ),
+                        html.Div(
+                            banner_04_mob(),
+                        style={             
+                        
+                        'height':'300px',
+                        },       
+                        id = 'banner_4_mobile', 
+                        ),
+    
+                        dmc.Space(h=20),
+
+                    ], id = 'div_content_banner_4_mobile', 
+                    style = {'display': 'none'}
+                    ),
+
+
+            
+            
+            dmc.Space(h=50),
         
         ],
-        #className="p-xl-5",
+         style={
+        #'border': 'thin grey solid',
+        }
         ),
-    html.Hr(),
+
+    
     ], 
-    ), id = 'modulo_content_1'
-)
-
-
+    ), id = 'modulo_content_1',
+    
+    )
+    
     return modulo
